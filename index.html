@@ -21,12 +21,48 @@
         }
     </style>
 </head>
-<body  class="min-h-screen max-w-md bg-[#ffffff] shadow-xl mx-auto my-12 rounded-md">
-    <div class="logo text-center w-[200px] mx-auto pt-8">
-        <img src="./assets/github-logo.png" class="mx-auto" alt="github-logo">
+<body  class="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white shadow-xl rounded-md p-6 md:p-8">
+        <!--Logo Section-->
+        <div class="logo text-center w-[400px] mx-auto pt-8 space-y-4">
+            <img src="./assets/github-logo.png" class="mx-auto" alt="github-logo">
+            <div>
+                <h2 class="text-xl font-semibold">GitHub Issues Tracker</h2>
+            <p class="text-[#64748B] text-sm">Sign in to manage your issues</p>
+            </div>
+        </div>
+        <!--Login Section-->
+        <div class="card-body mx-auto">
+            <fieldset class="fieldset">
+            <label class="label font-bold text-black">Username</label>
+            <input id="inpName" type="text" class="input w-full border focus:border-gray-500 focus:outline-none" placeholder="Enter Username" />
+            <p class="text-[#4A00FF]">Default: admin</p>
+            <label class="label font-bold text-black">Password</label>
+            <input id="inpPass" type="password" class="input w-full border focus:border-gray-500 focus:outline-none" placeholder="Enter Password" />
+            <p class="text-[#4A00FF]">Default: admin123</p>
+            <button id="btn" class="btn btn-primary mt-4">Sign In</button>
+            </fieldset>
+        </div>
+
+        <!--Ending-1 Section-->
+        <div class="flex gap-2 items-center px-4">
+            <hr class="text-[#E4E4E7] w-full">
+            <p>OR</p>
+            <hr class="text-[#E4E4E7] w-full">
+        </div>
+
+        <!--Ending-2 Section-->
+        <div class="text-center space-y-6 my-4">
+            <p class="text-[#64748B] text-sm">Demo Credentials:</p>
+            <div>
+                <p><span class="font-semibold">Username:</span> admin</p>
+                <p><span class="font-semibold">Password:</span> admin123</p>
+            </div>
+        </div>
     </div>
 
-    <!--Login JS-->
+    
+      <!--Login JS-->
     <script src="./scripts/login.js"></script>
 </body>
 </html>

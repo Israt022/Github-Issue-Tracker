@@ -10,6 +10,6 @@ btn.addEventListener('click',()=>{
     if(username === "admin" && password === "admin123"){
         window.location.assign("./main.html");
     }else{
-        window.location.assign("/")
+        window.location.assign("./")
     }
 })

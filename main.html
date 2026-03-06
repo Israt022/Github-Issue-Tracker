@@ -15,21 +15,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+    <!--Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         *{
             font-family: "Geist", sans-serif;
         }
     </style>
 </head>
-<body class="bg-base-200">
-    <nav class="bg-white p-5 border flex justify-center items-center sm:justify-between flex-col gap-5 sm:flex-row mx-auto">
+<body class="bg-[#F8FAFC] pb-8">
+    <!--Navbar-->
+    <nav class="bg-[#FFFFFF] p-5 flex justify-center items-center sm:justify-between flex-col gap-5 sm:flex-row mx-auto">
         <div class="flex gap-2 items-center">
             <img src="./assets/github-logo.png" alt="" class="w-[36px] h-[37px]">
-            <h1>GitHub Issues Tracker</h1>
+            <h1 class="text-xl font-semibold">GitHub Issues Tracker</h1>
         </div>
         <div class="join gap-4">
             <div>
-                <label class="input rounded-sm border focus-within:border-gray-500">
+                <label class="input input-bordered rounded-sm focus-within:border-gray-500 focus-within:outline-none">
                     <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g
                         stroke-linejoin="round"
@@ -42,12 +46,75 @@
                         <path d="m21 21-4.3-4.3"></path>
                         </g>
                     </svg>
-                    <input type="search" class="" placeholder="Search issues..." />
+                    <input id="search" type="search" placeholder="Search issues..." />
                 </label>
                 <div class="validator-hint hidden">Enter valid email address</div>
             </div>
-            <button class="btn btn-primary join-item rounded-sm">+ New Issue</button>
+            <button id="searchBtn" class="btn btn-primary join-item rounded-sm">+ New Issue</button>
         </div>
     </nav>
+    
+    <!--Button Section-->
+    <section class="bg-[#FFFFFF] mt-14 mb-4 w-[80%] mx-auto rounded-sm shadow-sm">
+        <div class="flex flex-col sm:flex-row gap-2 p-6 items-center md:items-start">
+            <button id="allBtn" class="btn btn-primary w-28">All</button>
+            <button id="openBtn" class="btn text-gray-500 w-28">Open</button>
+            <button id="closeBtn" class="btn text-gray-500 w-28">Closed</button>
+        </div>
+    </section>
+
+    <!--Card Section-->
+    <section class="bg-[#FBFBFB] w-[80%] mx-auto rounded-sm shadow-sm">
+        <!--Section Upper part-->
+        <div class="bg-[#FFFFFF] m-0 w-full rounded-sm shadow-sm flex flex-col items-center sm:justify-between sm:flex-row p-6 rounded-sm">
+            <!--section left Side-->
+            <div class="flex gap-2 items-center">
+                <div class="w-[40px] h-[40px] flex items-center justify-center bg-blue-500/30 rounded-full ">
+                    <img class="w-[28px] h-[28px]" src="./assets/Aperture.png" alt="">
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg"><span id="totalCard"></span> Issues</h3>
+                    <p class="text-gray-500">Track and manage your project issues</p>
+                </div>
+            </div>
+            <!--section Right Side-->
+            <div class="flex gap-2">
+                <div class="flex gap-1 items-center">
+                    <p class="w-[12px] h-[12px] bg-green-500 p-2 rounded-full"></p>
+                    <p>Open</p>
+                </div>
+                <div class="flex gap-1 items-center">
+                    <p class="w-[12px] h-[12px] bg-purple-500 p-2 rounded-full"></p>
+                    <p>Closed</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!--Card List-->
+        <div id="cardList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mx-auto items-center justify-center p-6">
+            <!--Card -->
+            
+        </div>
+    </section>
+
+    <!--Details Modal-->
+    <!-- Open the modal using ID.showModal() method -->
+    <button class="btn" onclick="card_detail.showModal()">open modal</button>
+    <dialog id="card_detail" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Hello!</h3>
+        <p class="py-4">Press ESC key or click the button below to close</p>
+        <div class="modal-action">
+        <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+        </form>
+        </div>
+    </div>
+    </dialog>
+
+    <!--JS-->
+    <script src="./scripts/main.js"></script>
 </body>
 </html>

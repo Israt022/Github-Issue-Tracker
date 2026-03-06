@@ -73,7 +73,7 @@
                     <img class="w-[28px] h-[28px]" src="./assets/Aperture.png" alt="">
                 </div>
                 <div>
-                    <h3 class="font-semibold text-lg"><span id="totalCard"></span> Issues</h3>
+                    <h3 class="font-semibold text-lg"><span id="totalCard">0</span> Issues</h3>
                     <p class="text-gray-500">Track and manage your project issues</p>
                 </div>
             </div>
@@ -96,19 +96,43 @@
             <!--Card -->
             
         </div>
+        <!--Spinner-->
+        <div id="loading" class="h-[60vh] flex hidden justify-center items-center">
+            <span  class="loading loading-spinner text-success"></span>
+        </div>
     </section>
-
+    
     <!--Details Modal-->
     <!-- Open the modal using ID.showModal() method -->
-    <button class="btn" onclick="card_detail.showModal()">open modal</button>
+
     <dialog id="card_detail" class="modal modal-bottom sm:modal-middle">
-    <div class="modal-box">
-        <h3 class="text-lg font-bold">Hello!</h3>
-        <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-box space-y-3 text-start">
+        <h3 id="detail-title" class="text-lg font-bold"></h3>
+        <div class="flex gap-2 items-center">
+            <div id="detail_status" class="badge badge-soft badge-success"></div>
+            <p class="text-sm text-gray-500">•</p>
+            <p class="text-sm text-gray-500">Opened by <span class="assignee"></span></p>
+            <p class="text-sm text-gray-500">•</p>
+            <p id="createdAt" class="text-sm text-gray-500"></p>
+        </div>
+        <div id="label" class="flex items-center gap-2 mt-4">
+            <!--Labels-->
+        </div>
+        <p id="detail-des" class="py-4 text-gray-500 text-sm"></p>
+        <div class="bg-[#F8FAFC] p-4 flex justify-items-start mx-auto gap-8">
+            <div class="items-start space-y-2">
+                <p class="text-gray-500 text-sm">Assignee:</p>
+                <h3 class="assignee" class="font-bold"></h3>
+            </div>
+            <div class="items-start space-y-2">
+                <p class="text-gray-500 text-sm">Priority:</p>
+                <div id="priority" class="badge badge-soft badge-error"></div>
+            </div>
+        </div>
         <div class="modal-action">
         <form method="dialog">
             <!-- if there is a button in form, it will close the modal -->
-            <button class="btn">Close</button>
+            <button class="btn btn-primary">Close</button>
         </form>
         </div>
     </div>

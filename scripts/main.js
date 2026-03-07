@@ -1,26 +1,9 @@
-/*
-"data": [
-    {
-        "id": 1,
-        "title": "Fix navigation menu on mobile devices",
-        "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
-        "status": "open",
-        "labels": [
-            "bug",
-            "help wanted"
-        ],
-        "priority": "high",
-        "author": "john_doe",
-        "assignee": "jane_smith",
-        "createdAt": "2024-01-15T10:30:00Z",
-        "updatedAt": "2024-01-15T10:30:00Z"
-    },
-]
-*/
 const cardList = document.getElementById('cardList');
 const totalCard = document.getElementById('totalCard');
 const cardDetail = document.getElementById('card_detail');
 const loading = document.getElementById('loading');
+
+const searchInput = document.getElementById('search');
 
 
 const showLoading = () =>{
@@ -29,15 +12,6 @@ const showLoading = () =>{
 }
 const hideLoading = () =>{
     loading.classList.add('hidden');
-}
-
-// Get Style
-const getLabelClass = (label) => {
-    if(label === 'bug') return 'badge-secondary';
-    if(label === 'help wanted') return 'badge-warning';
-    if(label === 'enhancement') return 'badge-success';
-    if(label === 'good first issue') return 'badge-primary';
-    return 'badge-error';
 }
 
 // Load GitHub All Issue
@@ -53,7 +27,6 @@ const loadGitIssue = async () => {
 loadGitIssue();
 
 const selectButton = (id) =>{
-    console.log(id);
     showLoading();
     const buttons = ["allBtn","openBtn","closeBtn"];
 
@@ -209,3 +182,12 @@ const  cardDetails = async (cardId) => {
     `
     cardDetail.showModal();
 }
+
+searchInput.addEventListener('keydown', async(e) => {
+    if(e.key === "Enter"){
+        const value = searchInput.value.trim().toLowerCase();
+        const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${value}`);
+        const data = await res.json();
+        displayGitIssue(data.data);
+    }
+})

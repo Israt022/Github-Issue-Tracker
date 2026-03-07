@@ -57,9 +57,26 @@
     <!--Button Section-->
     <section class="bg-[#FFFFFF] mt-14 mb-4 w-[80%] mx-auto rounded-sm shadow-sm">
         <div class="flex flex-col sm:flex-row gap-2 p-6 items-center md:items-start">
-            <button id="allBtn" class="btn btn-primary w-28">All</button>
-            <button id="openBtn" class="btn text-gray-500 w-28">Open</button>
-            <button id="closeBtn" class="btn text-gray-500 w-28">Closed</button>
+            <button
+                onclick="selectButton('allBtn')" 
+                id="allBtn" 
+                class="btn btn-primary w-28"
+            >
+                All
+            </button>
+            <button
+                onclick="selectButton('openBtn')" 
+                id="openBtn" 
+                class="btn text-gray-500 w-28">
+                Open
+            </button>
+            <button
+                onclick="selectButton('closeBtn')" 
+                id="closeBtn" 
+                class="btn text-gray-500 w-28"
+            >
+                Closed
+            </button>
         </div>
     </section>
 

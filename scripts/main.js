@@ -22,6 +22,7 @@ const totalCard = document.getElementById('totalCard');
 const cardDetail = document.getElementById('card_detail');
 const loading = document.getElementById('loading');
 
+
 const showLoading = () =>{
     loading.classList.remove('hidden');
     cardList.innerHTML = ""
@@ -40,15 +41,46 @@ const getLabelClass = (label) => {
 }
 
 // Load GitHub All Issue
-
+let allIssue = [];
 const loadGitIssue = async () => {
     showLoading()
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await res.json();
-    displayGitIssue(data.data);
+    allIssue = data.data;
+    displayGitIssue(allIssue);
     hideLoading()
 }
 loadGitIssue();
+
+const selectButton = (id) =>{
+    console.log(id);
+    showLoading();
+    const buttons = ["allBtn","openBtn","closeBtn"];
+
+    buttons.forEach(btn => {
+        const button = document.getElementById(btn);
+        button.classList.remove('btn-primary');
+        button.classList.add('text-gray-500');
+    });
+
+    const activeBtn = document.getElementById(id);
+    activeBtn.classList.add('btn-primary');
+    activeBtn.classList.remove('text-gray-500');
+
+    if(id === 'allBtn'){
+        displayGitIssue(allIssue);
+    }
+    if (id === 'openBtn'){
+        const openIssue = allIssue.filter(issue => issue.status === 'open');
+        document.getElementById('totalCard').textContent = openIssue.length;
+        displayGitIssue(openIssue);
+    }
+    if(id === 'closeBtn'){
+        const closeIssue = allIssue.filter(issue => issue.status === 'closed');
+        document.getElementById('totalCard').textContent = closeIssue.length;
+        displayGitIssue(closeIssue);
+    }
+}
 
 // Display Git Issue
 const displayGitIssue = (cards) => {
@@ -56,7 +88,7 @@ const displayGitIssue = (cards) => {
     document.getElementById('totalCard').textContent = cards.length;
     cards.forEach(card => {
         const div = document.createElement('div');
-        div.classList = `card bg-base-100 w-full h-full border-t-3 cursor-pointer ${card.status === 'open' ? 'border-green-500' : 'border-purple-500'} shadow-sm  space-y-2`;
+        div.classList = `card bg-base-100 hover:bg-base-200 w-full h-full border-t-3 cursor-pointer ${card.status === 'open' ? 'border-green-500' : 'border-purple-500'} shadow-sm  space-y-2 transition transform duration-300 hover:scale-105`;
         div.onclick = () => cardDetails(card.id);
         div.innerHTML = `
             <!--Starting-->
@@ -176,5 +208,4 @@ const  cardDetails = async (cardId) => {
         `).join("")}
     `
     cardDetail.showModal();
-    console.log(cardId);
 }

@@ -188,6 +188,20 @@ searchInput.addEventListener('keydown', async(e) => {
         const value = searchInput.value.trim().toLowerCase();
         const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${value}`);
         const data = await res.json();
-        displayGitIssue(data.data);
+
+        const buttons = ["allBtn","openBtn","closeBtn"];
+
+        buttons.forEach(btn => {
+            const button = document.getElementById(btn);
+            button.classList.remove('btn-primary');
+            button.classList.add('text-gray-500');
+        });
+        if(data.data.length === 0){
+            cardList.innerHTML = "";
+            document.getElementById('noData').classList.remove('hidden');
+        }else{
+            document.getElementById('noData').classList.add('hidden');
+            displayGitIssue(data.data);
+        }
     }
 })
